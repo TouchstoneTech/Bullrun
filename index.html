@@ -1,148 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bull Run: Market Runner</title>
-<meta name="description" content="An arcade runner set on a 1987 Wall Street. Collect green, dodge red, and get out before the tape turns.">
+<meta name="description" content="A one-thumb arcade runner set on a 1987 Wall Street. Three lanes, eleven rungs to 75x, and not one advert you did not ask for. iPhone, iOS 17+.">
 <link rel="icon" href="assets/icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bull Run: Market Runner">
+<meta property="og:description" content="Collect green. Dodge red. A one-thumb arcade runner set on a 1987 Wall Street.">
+<meta property="og:image" content="assets/run.png">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="preload" as="image" href="assets/run.png">
 
 <style>
-/* ------------------------------------------------------------------
-   Bull Run — one committed visual world, taken from the game itself:
-   near-black ground, the Pit green, and the sodium lamps of WALL.
-   Single theme by decision, so every colour is painted explicitly.
-   ------------------------------------------------------------------ */
+/* ==================================================================
+   Bull Run — a trading terminal at night.
+   Near-black ground, one green that pays, one red that costs, and
+   sodium light off the 1987 street. Dark by decision: every colour
+   is painted explicitly, so there is no light-mode half-state.
+   ================================================================== */
+
 :root {
-  --ink:      #08090B;
-  --panel:    #0E1116;
-  --panel-2:  #12161C;
-  --edge:     #1C222B;
-  --edge-lit: #2A3441;
-  --green:    #25E88A;
-  --green-dp: #0C7346;
-  --sodium:   #E9A23B;
-  --red:      #FF4D5A;
-  --text:     #EEF1F4;
-  --dim:      #79838F;
-  --dimmer:   #4E5762;
+  --ink:       #07080A;
+  --ink-2:     #0B0E12;
+  --ink-3:     #10141A;
+  --line:      #191E26;
+  --line-2:    #29323E;
+
+  --green:     #2BE68C;
+  --green-dim: #0E7A4A;
+  --green-lbl: #28C077;
+  --green-ink: #04140C;
+  --gold:      #E8A33C;
+  --red:       #FF4E5B;
+
+  --text:      #F0F3F6;
+  --mute:      #8A939F;
+  --faint:     #79838F;
 
   --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --gutter: 148px;
-  --maxw: 1120px;
+  --maxw: 1200px;
+  --pad: 24px;
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   background: var(--ink);
   color: var(--text);
   font-family: var(--display);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
+strong { color: var(--text); font-weight: 700; }
 
 :focus-visible {
   outline: 2px solid var(--green);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 .wrap {
+  width: 100%;
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 var(--pad);
 }
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--green);
+  color: var(--green-ink);
+  padding: 12px 18px;
+  font-weight: 800;
+  z-index: 100;
+}
+.skip:focus { left: 12px; top: 12px; }
+
+/* --- shared type ------------------------------------------------- */
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 0;
+}
+
+h2 {
+  font-size: clamp(29px, 3.6vw, 46px);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+  text-wrap: balance;
+  margin: 14px 0 0;
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+p { margin: 16px 0 0; color: var(--mute); }
+p.tight { margin-top: 10px; }
 
 /* --- masthead ---------------------------------------------------- */
 
 .masthead {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(7, 8, 10, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.masthead .wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 22px 0 20px;
-  border-bottom: 1px solid var(--edge);
+  height: 66px;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 11px;
   text-decoration: none;
+  flex: none;
 }
 
 .brand img {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   border-radius: 8px;
-  border: 1px solid var(--edge-lit);
+  border: 1px solid var(--line-2);
 }
 
 .brand b {
   font-weight: 800;
-  font-size: 16px;
-  letter-spacing: -0.01em;
+  font-size: 15px;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
 }
 
 .masthead nav {
   display: flex;
-  gap: 22px;
+  gap: 26px;
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
 .masthead nav a {
-  color: var(--dim);
+  color: var(--mute);
   text-decoration: none;
   transition: color .15s ease;
+  white-space: nowrap;
 }
-
 .masthead nav a:hover { color: var(--green); }
-
-/* --- the ledger grid --------------------------------------------- */
-
-.row {
-  display: grid;
-  grid-template-columns: var(--gutter) minmax(0, 1fr);
-  gap: 0 36px;
-  padding: 68px 0;
-  border-bottom: 1px solid var(--edge);
-}
-
-.row > .label {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--dimmer);
-  padding-top: 6px;
-}
-
-.row > .label span {
-  display: block;
-  color: var(--green-dp);
-  margin-top: 4px;
-}
 
 /* --- hero -------------------------------------------------------- */
 
 .hero {
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(1100px 480px at 76% 12%, rgba(43, 230, 140, .07), transparent 62%),
+    radial-gradient(760px 420px at 6% 88%, rgba(232, 163, 60, .05), transparent 66%);
+}
+
+.hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  gap: 56px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(32px, 5vw, 76px);
   align-items: center;
-  padding: 78px 0 64px;
+  padding: clamp(44px, 6vw, 76px) 0 clamp(34px, 4vw, 52px);
 }
 
 .status {
@@ -152,29 +212,31 @@ a { color: inherit; }
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--sodium);
-  border: 1px solid rgba(233, 162, 59, .35);
+  color: var(--gold);
+  border: 1px solid rgba(232, 163, 60, .34);
+  background: rgba(232, 163, 60, .06);
   border-radius: 999px;
-  padding: 6px 13px;
+  padding: 6px 14px;
 }
 
 .status i {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--sodium);
-  box-shadow: 0 0 9px var(--sodium);
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
+  flex: none;
 }
 
 h1 {
-  font-size: clamp(46px, 7.4vw, 88px);
+  font-size: clamp(42px, 6.4vw, 84px);
   font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.035em;
+  line-height: 0.94;
+  letter-spacing: -0.042em;
   text-wrap: balance;
-  margin: 26px 0 0;
+  margin: 22px 0 0;
 }
 
 h1 em {
@@ -183,28 +245,28 @@ h1 em {
 }
 
 .lede {
-  font-size: 19px;
+  font-size: clamp(17px, 1.5vw, 20px);
   line-height: 1.55;
-  color: var(--dim);
-  max-width: 46ch;
-  margin: 22px 0 0;
+  color: var(--mute);
+  max-width: 44ch;
+  margin: 20px 0 0;
 }
 
 .cta {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 34px;
+  margin-top: 30px;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   font-family: var(--display);
   font-size: 14px;
   font-weight: 800;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   text-decoration: none;
   padding: 14px 24px;
   border-radius: 10px;
@@ -214,50 +276,95 @@ h1 em {
 
 .btn-primary {
   background: var(--green);
-  color: #04140D;
-  box-shadow: 0 0 34px rgba(37, 232, 138, .22);
+  color: var(--green-ink);
+  box-shadow: 0 0 38px rgba(43, 230, 140, .2);
 }
-
-.btn-primary:hover { transform: translateY(-1px); background: #3BF09A; }
+.btn-primary:hover { transform: translateY(-1px); background: #46F19E; }
 
 .btn-ghost {
-  border-color: var(--edge-lit);
+  border-color: var(--line-2);
   color: var(--text);
 }
+.btn-ghost:hover { border-color: var(--mute); background: var(--ink-3); }
 
-.btn-ghost:hover { border-color: var(--dim); background: var(--panel); }
-
-.hero figure { margin: 0; }
-
-/* --- phone frames ------------------------------------------------ */
-
-.phone {
-  border: 1px solid var(--edge-lit);
-  border-radius: 26px;
-  overflow: hidden;
-  background: #000;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, .6);
+.note {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+  margin-top: 18px;
 }
 
-.phone img { width: 100%; }
+/* the phone: never rendered above its native 294px, so it stays sharp */
+.hero figure { margin: 0; flex: none; }
+
+.phone {
+  border: 1px solid var(--line-2);
+  border-radius: 24px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, .66), 0 0 0 6px rgba(255,255,255,.015);
+  width: fit-content;
+}
+
+.phone img {
+  width: auto;
+  height: clamp(360px, 54vh, 540px);
+  max-width: 294px;
+  object-fit: contain;
+}
 
 figcaption {
   font-family: var(--mono);
   font-size: 10.5px;
   font-weight: 500;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--dimmer);
-  margin-top: 12px;
+  color: var(--faint);
   text-align: center;
+  margin-top: 14px;
 }
 
-/* --- the tape ---------------------------------------------------- */
+/* --- the numbers band -------------------------------------------- */
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+}
+
+.fig {
+  padding: 26px 0 30px;
+  border-right: 1px solid var(--line);
+  padding-right: 20px;
+}
+.fig:last-child { border-right: 0; }
+
+.fig b {
+  display: block;
+  font-size: clamp(30px, 3.4vw, 42px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.fig .g { color: var(--green); }
+
+.fig span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-top: 10px;
+}
+
+/* --- ticker tape -------------------------------------------------- */
 
 .tape {
-  border-top: 1px solid var(--edge);
-  border-bottom: 1px solid var(--edge);
-  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  background: var(--ink-2);
   overflow: hidden;
   padding: 13px 0;
 }
@@ -266,117 +373,131 @@ figcaption {
   display: flex;
   gap: 44px;
   width: max-content;
-  animation: scroll 46s linear infinite;
+  animation: slide 46s linear infinite;
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: var(--faint);
   white-space: nowrap;
 }
 
-.tape-track b { color: var(--text); font-weight: 600; }
-.tape-track u { text-decoration: none; color: var(--green); }
-.tape-track s { text-decoration: none; color: var(--sodium); }
+.tape-track b { color: var(--green); font-weight: 700; }
+.tape-track u { color: var(--gold); text-decoration: none; }
+.tape-track s { color: var(--red); text-decoration: none; }
 
-@keyframes scroll {
+@keyframes slide {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .tape-track { animation: none; }
-  .btn { transition: none; }
+/* --- sections ----------------------------------------------------- */
+
+.section {
+  padding: clamp(60px, 8vw, 104px) 0;
+  border-bottom: 1px solid var(--line);
 }
 
-/* --- prose + beats ----------------------------------------------- */
-
-h2 {
-  font-size: clamp(28px, 3.6vw, 40px);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.028em;
-  margin: 0 0 18px;
-  text-wrap: balance;
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: clamp(30px, 4vw, 46px);
 }
 
-.row p {
-  color: var(--dim);
-  max-width: 62ch;
-  margin: 0 0 16px;
-  font-size: 16.5px;
+.chapter {
+  font-family: var(--mono);
+  font-size: clamp(30px, 3.4vw, 44px);
+  font-weight: 700;
+  line-height: 1;
+  color: #3D4855;
+  letter-spacing: -0.03em;
+  flex: none;
 }
 
-.row p strong { color: var(--text); font-weight: 600; }
+.head-text { min-width: 0; }
+.head-text h2 { margin-top: 8px; }
+
+.prose { max-width: 62ch; }
+
+/* --- beats -------------------------------------------------------- */
 
 .beats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 42px;
 }
 
-.beat h3 {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--green);
-  margin: 0 0 10px;
-  padding-top: 14px;
-  border-top: 1px solid var(--edge-lit);
+.beat {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--ink-3), var(--ink-2));
+  padding: 24px 22px 26px;
 }
 
-.beat p { font-size: 15px; margin: 0; }
+.beat p { font-size: 15.5px; margin-top: 0; }
 
-/* --- floors table ------------------------------------------------ */
-
-.floors {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 4px;
-}
-
-.floors th {
+.beat .k {
   font-family: var(--mono);
   font-size: 10.5px;
   font-weight: 600;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--dimmer);
-  text-align: left;
-  padding: 0 14px 12px 0;
-  border-bottom: 1px solid var(--edge);
-  white-space: nowrap;
+  color: var(--green-lbl);
+  display: block;
+  margin-bottom: 12px;
 }
 
-.floors td {
-  padding: 20px 14px 20px 0;
-  border-bottom: 1px solid var(--edge);
-  vertical-align: baseline;
+/* --- floors ------------------------------------------------------- */
+
+.floors {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 8px;
 }
 
-.floors tr:last-child td { border-bottom: 0; }
-
-.floor-name {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.015em;
-  white-space: nowrap;
+.floor {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--ink-2);
+  padding: 24px 24px 26px 28px;
+  overflow: hidden;
 }
 
-.floors .desc { color: var(--dim); font-size: 15px; }
+.floor::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--c, var(--line-2));
+}
 
-.floors .pays {
+.floor-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.floor h3 {
   font-family: var(--mono);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--sodium);
-  font-variant-numeric: tabular-nums;
-  text-align: right;
-  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+.pays {
+  font-family: var(--mono);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--c, var(--text));
+  flex: none;
 }
 
 .tag {
@@ -384,154 +505,270 @@ h2 {
   font-family: var(--mono);
   font-size: 9.5px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 4px;
-  border: 1px solid currentColor;
-  margin-top: 8px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: 3px 9px;
+  color: var(--faint);
+  margin-top: 11px;
 }
 
-.tag-red { color: var(--red); }
-.tag-gold { color: var(--sodium); }
-.tag-green { color: var(--green); }
+.floor p { font-size: 15.5px; margin-top: 14px; }
 
-.scroller { overflow-x: auto; }
-
-/* --- roster ladder ----------------------------------------------- */
-
-.ladder {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 30px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.ladder li {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--dim);
-  border: 1px solid var(--edge-lit);
-  border-radius: 6px;
-  padding: 7px 11px;
-}
-
-.ladder li b {
-  color: var(--text);
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-}
+/* --- split (text + phone) ------------------------------------------ */
 
 .split {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 268px;
-  gap: 48px;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(32px, 5vw, 68px);
+  align-items: center;
 }
 
-/* --- footer ------------------------------------------------------ */
+.split.flip { grid-template-columns: auto minmax(0, 1fr); }
+.split.flip > figure { order: -1; }
 
-footer {
-  padding: 54px 0 72px;
+.split .phone img { height: clamp(340px, 46vh, 470px); }
+
+/* --- rarity ladder -------------------------------------------------- */
+
+.ladder {
+  list-style: none;
+  margin: 30px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+  max-width: 420px;
+}
+
+.ladder li {
+  display: grid;
+  grid-template-columns: 22px 90px 1fr;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.ladder b {
+  color: var(--text);
+  font-weight: 700;
+  font-size: 13px;
+  text-align: right;
+}
+
+.ladder .bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.ladder .bar i {
+  display: block;
+  height: 100%;
+  background: var(--green-dim);
+  border-radius: 3px;
+}
+
+.ladder li:last-child .bar i { background: var(--gold); }
+
+/* --- rules ---------------------------------------------------------- */
+
+.rules {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.rules li {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  font-size: 16px;
+  color: var(--mute);
+}
+
+.rules li:last-child { border-bottom: 1px solid var(--line); }
+
+.rules em {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--green-lbl);
+  padding-top: 4px;
+}
+
+.price {
   display: flex;
   flex-wrap: wrap;
-  gap: 26px 44px;
   align-items: baseline;
-  justify-content: space-between;
+  gap: 10px 16px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.price b {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+}
+
+.price span {
   font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.05em;
-  color: var(--dimmer);
+  font-size: 11.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--faint);
 }
 
-footer a {
-  color: var(--dim);
-  text-decoration: none;
-  border-bottom: 1px solid var(--edge-lit);
-  padding-bottom: 2px;
-  transition: color .15s ease, border-color .15s ease;
+/* --- footer ---------------------------------------------------------- */
+
+footer {
+  padding: 44px 0 60px;
 }
 
-footer a:hover { color: var(--green); border-color: var(--green); }
+footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
 
-footer .links { display: flex; flex-wrap: wrap; gap: 24px; }
+footer .links { display: flex; gap: 24px; }
+footer a { color: var(--mute); text-decoration: none; }
+footer a:hover { color: var(--green); }
 
-/* --- responsive --------------------------------------------------- */
+/* --- responsive ------------------------------------------------------- */
 
-@media (max-width: 900px) {
-  :root { --gutter: 0px; }
-  .row { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 52px 0; }
-  .row > .label { padding: 0 0 18px; }
-  .hero { grid-template-columns: minmax(0, 1fr); gap: 44px; padding: 52px 0; }
-  .hero figure { max-width: 280px; margin-inline: auto; }
-  .split { grid-template-columns: minmax(0, 1fr); gap: 40px; }
-  .split figure { max-width: 260px; margin-inline: auto; }
-  .beats { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+@media (max-width: 1000px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero figure { justify-self: center; }
+  .split, .split.flip { grid-template-columns: 1fr; gap: 40px; }
+  .split.flip > figure { order: 0; }
+  .split figure { justify-self: center; }
+  .beats { grid-template-columns: 1fr; }
+  .floors { grid-template-columns: 1fr; }
   .masthead nav { display: none; }
+  .figures { grid-template-columns: repeat(2, 1fr); }
+  .fig:nth-child(2) { border-right: 0; }
+  .fig:nth-child(3), .fig:nth-child(4) { border-top: 1px solid var(--line); }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .head { flex-direction: column; gap: 4px; }
+  .chapter { font-size: 26px; }
+  .cta { gap: 10px; }
+  .btn { flex: 1 1 auto; justify-content: center; }
+  .phone img { height: clamp(320px, 52vh, 430px); }
+  .ladder li { grid-template-columns: 20px 78px 1fr; gap: 10px; font-size: 10.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .tape-track { animation: none; }
+  * { transition: none !important; }
 }
 </style>
+</head>
+<body>
 
-<div class="wrap">
-  <header class="masthead">
+<a class="skip" href="#play">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
     <a class="brand" href="#top">
-      <img src="assets/icon.png" alt="Bull Run app icon: a green bull's head over candlesticks">
+      <img src="assets/icon.png" width="30" height="30" alt="">
       <b>Bull&nbsp;Run</b>
     </a>
-    <nav>
-      <a href="#game">The game</a>
+    <nav aria-label="Sections">
+      <a href="#play">How it plays</a>
       <a href="#floors">The floors</a>
       <a href="#roster">The roster</a>
-      <a href="#honest">No interstitials</a>
+      <a href="#deal">The deal</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <section class="hero" id="top">
-    <div>
-      <span class="status"><i></i>In TestFlight · iOS 17+</span>
-      <h1>Collect green.<br><em>Dodge red.</em></h1>
-      <p class="lede">
-        Swipe left and right to change lane — that is the whole game.
-        Everything else is what a market does to you while you do it.
-      </p>
-      <div class="cta">
-        <a class="btn btn-primary" href="#floors">See the four floors</a>
-        <a class="btn btn-ghost" href="https://github.com/TouchstoneTech/Bullrun">View on GitHub</a>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="status"><i></i>In TestFlight · iOS 17+</span>
+        <h1>Collect green.<br><em>Dodge red.</em></h1>
+        <p class="lede">
+          Swipe left and right to change lane — that is the whole game.
+          Everything else is what a market does to you while you do it.
+        </p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#play">See how it plays</a>
+          <a class="btn btn-ghost" href="https://github.com/TouchstoneTech/Bullrun">View on GitHub</a>
+        </div>
+        <p class="note">Free to play · $3.99 removes ads · No interstitials, ever</p>
       </div>
+
+      <figure>
+        <div class="phone">
+          <img src="assets/run.png" width="294" height="640" fetchpriority="high"
+               alt="A run in progress on WALL: a 1987 street canyon under sodium lamps, portfolio at $1.42K, three margin segments intact.">
+        </div>
+        <figcaption>WALL · October 1987</figcaption>
+      </figure>
     </div>
-    <figure>
-      <div class="phone">
-        <img src="assets/run.png" width="640" height="1391"
-             alt="A run in progress on WALL: a 1987 street canyon under sodium lamps, portfolio at $1.42K, three margin segments intact.">
-      </div>
-      <figcaption>WALL · October 1987</figcaption>
-    </figure>
-  </section>
-</div>
+
+    <div class="figures">
+      <div class="fig"><b class="g">75×</b><span>Top of the ladder</span></div>
+      <div class="fig"><b>4</b><span>Floors</span></div>
+      <div class="fig"><b>23</b><span>Runners</span></div>
+      <div class="fig"><b>122</b><span>Headlines</span></div>
+    </div>
+  </div>
+</section>
 
 <div class="tape">
   <div class="tape-track" aria-hidden="true">
-    <span><b>23</b> CHARACTERS</span><span><b>4</b> FLOORS</span>
-    <span><b>122</b> HEADLINES</span><span>LADDER TO <u>75×</u></span>
-    <span><b>3</b> RUNS TO A SET</span><span>GOLD CAPPED AT <s>15/DAY</s></span>
-    <span>NO INTERSTITIALS <u>EVER</u></span><span><b>41</b> MEDALS</span>
-    <span><b>23</b> CHARACTERS</span><span><b>4</b> FLOORS</span>
-    <span><b>122</b> HEADLINES</span><span>LADDER TO <u>75×</u></span>
-    <span><b>3</b> RUNS TO A SET</span><span>GOLD CAPPED AT <s>15/DAY</s></span>
-    <span>NO INTERSTITIALS <u>EVER</u></span><span><b>41</b> MEDALS</span>
+    <span><b>23</b> characters</span><span><b>4</b> floors</span>
+    <span><b>122</b> headlines</span><span>Ladder to <u>75×</u></span>
+    <span><b>3</b> runs to a set</span><span>Gold capped at <s>15/day</s></span>
+    <span>No interstitials <u>ever</u></span><span><b>41</b> medals</span>
+    <span><b>23</b> characters</span><span><b>4</b> floors</span>
+    <span><b>122</b> headlines</span><span>Ladder to <u>75×</u></span>
+    <span><b>3</b> runs to a set</span><span>Gold capped at <s>15/day</s></span>
+    <span>No interstitials <u>ever</u></span><span><b>41</b> medals</span>
   </div>
 </div>
 
-<div class="wrap">
+<main>
 
-  <section class="row" id="game">
-    <div class="label">The game<span>Reaction</span></div>
-    <div>
-      <h2>One thumb. Three lanes. No time to think.</h2>
+<section class="section" id="play">
+  <div class="wrap">
+    <div class="head">
+      <div class="chapter" aria-hidden="true">01</div>
+      <div class="head-text">
+        <p class="eyebrow">How it plays</p>
+        <h2>One thumb. Three lanes.<br>No time to think.</h2>
+      </div>
+    </div>
+
+    <div class="prose">
       <p>
         Bull Run is a game about <strong>reaction, not calculation</strong>. There is no portfolio to
         balance and nothing to cash out. Green candles pay, red candles cost, and a ladder of
@@ -542,78 +779,105 @@ footer .links { display: flex; flex-wrap: wrap; gap: 24px; }
         The market phases loop and come back hotter each time, so a run has an arc rather than a
         difficulty curve. You are not trying to survive. You are trying to get out before the tape turns.
       </p>
-      <div class="beats">
-        <div class="beat">
-          <h3>Best of three</h3>
-          <p>
-            Three runs make a set and the set is scored on the <strong>total</strong>, not the best of
-            them. A weak second run is a real hole in the number, so the third one gets played.
-          </p>
-        </div>
-        <div class="beat">
-          <h3>The news</h3>
-          <p>
-            122 headlines, and the same one never comes round twice in a day. Read it, pick one of
-            three answers, live with it. Most of them are jokes. Some of them cost you the run.
-          </p>
-        </div>
-        <div class="beat">
-          <h3>The margin bar</h3>
-          <p>
-            Three hits and you are liquidated — two on OVERNIGHT, where nothing you collect buys a
-            mistake back. Every hazard is read on lane distance, never on how big it looks.
-          </p>
-        </div>
+    </div>
+
+    <div class="beats">
+      <div class="beat">
+        <span class="k">Best of three</span>
+        <h3>The set is scored on the total</h3>
+        <p>
+          Three runs make a set, and it is the total that counts — not the best of them. A weak second
+          run is a real hole in the number, so the third one gets played.
+        </p>
+      </div>
+      <div class="beat">
+        <span class="k">The news</span>
+        <h3>122 headlines, none repeated in a day</h3>
+        <p>
+          Read it, pick one of three answers, live with it. Most of them are jokes. Some of them cost
+          you the run.
+        </p>
+      </div>
+      <div class="beat">
+        <span class="k">The margin bar</span>
+        <h3>Three hits and you are liquidated</h3>
+        <p>
+          Two on OVERNIGHT, where nothing you collect buys a mistake back. Every hazard is read on lane
+          distance, never on how big it looks.
+        </p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="row" id="floors">
-    <div class="label">The floors<span>Four rooms</span></div>
-    <div>
-      <h2>Four places to lose your money.</h2>
-      <p>
-        Each floor is its own world with its own light, and the harder the room the more the
-        headline pays to take out of it.
-      </p>
-      <div class="scroller">
-        <table class="floors">
-          <thead>
-            <tr><th>Floor</th><th>What it is</th><th style="text-align:right">Pays</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="floor-name">WALL<br><span class="tag tag-gold">1987</span></td>
-              <td class="desc">October 1987. A stone canyon under sodium lamps, and the tape is already red.</td>
-              <td class="pays">1×</td>
-            </tr>
-            <tr>
-              <td class="floor-name">THE LOBBY<br><span class="tag tag-gold">The glare</span></td>
-              <td class="desc">The walk in. Marble, brass, and the sun coming off the floor hard enough to delete the lane markings.</td>
-              <td class="pays">1×</td>
-            </tr>
-            <tr>
-              <td class="floor-name">ALL IN GOLD<br><span class="tag tag-green">One life</span></td>
-              <td class="desc">The same street at four in the afternoon. One red candle ends it.</td>
-              <td class="pays">1.2×</td>
-            </tr>
-            <tr>
-              <td class="floor-name">OVERNIGHT<br><span class="tag tag-red">Hardest</span></td>
-              <td class="desc">The thin session. The floor shakes, the lights go out, and nothing you pick up buys back a hit.</td>
-              <td class="pays">1.5×</td>
-            </tr>
-          </tbody>
-        </table>
+<section class="section" id="floors">
+  <div class="wrap">
+    <div class="head">
+      <div class="chapter" aria-hidden="true">02</div>
+      <div class="head-text">
+        <p class="eyebrow">The floors</p>
+        <h2>Four places to lose your money.</h2>
       </div>
     </div>
-  </section>
 
-  <section class="row" id="roster">
-    <div class="label">The roster<span>23 runners</span></div>
+    <p class="prose" style="margin-bottom:34px">
+      Each floor is its own world with its own light, and the harder the room the more the headline
+      pays to take out of it.
+    </p>
+
+    <div class="floors">
+      <article class="floor" style="--c: var(--gold)">
+        <div class="floor-top">
+          <h3>WALL</h3>
+          <div class="pays">1×</div>
+        </div>
+        <span class="tag">1987</span>
+        <p>October 1987. A stone canyon under sodium lamps, and the tape is already red.</p>
+      </article>
+
+      <article class="floor" style="--c: var(--gold)">
+        <div class="floor-top">
+          <h3>THE LOBBY</h3>
+          <div class="pays">1×</div>
+        </div>
+        <span class="tag">The glare</span>
+        <p>The walk in. Marble, brass, and the sun coming off the floor hard enough to delete the lane markings.</p>
+      </article>
+
+      <article class="floor" style="--c: var(--green)">
+        <div class="floor-top">
+          <h3>ALL IN GOLD</h3>
+          <div class="pays">1.2×</div>
+        </div>
+        <span class="tag">One life</span>
+        <p>The same street at four in the afternoon. One red candle ends it.</p>
+      </article>
+
+      <article class="floor" style="--c: var(--red)">
+        <div class="floor-top">
+          <h3>OVERNIGHT</h3>
+          <div class="pays">1.5×</div>
+        </div>
+        <span class="tag">Hardest</span>
+        <p>The thin session. The floor shakes, the lights go out, and nothing you pick up buys back a hit.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="roster">
+  <div class="wrap">
+    <div class="head">
+      <div class="chapter" aria-hidden="true">03</div>
+      <div class="head-text">
+        <p class="eyebrow">The roster · 23 runners</p>
+        <h2>Everyone on the roster is somebody you have met.</h2>
+      </div>
+    </div>
+
     <div class="split">
       <div>
-        <h2>Everyone on the roster is somebody you have met.</h2>
-        <p>
+        <p style="margin-top:0">
           The Bagholder, carrying a duffel in each hand, both pointing at the floor. Paper Hands,
           whose head is folded paper stencilled FRAGILE. Diamond Hands, an ape whose knuckles are
           <strong>modelled as cut stone</strong> rather than painted to look like it. The HODLer of
@@ -622,63 +886,91 @@ footer .links { display: flex; flex-wrap: wrap; gap: 24px; }
         </p>
         <p>
           Every one of the 23 carries a single permanent <strong>Edge</strong>, and no two edges move
-          the same number. The badge and the edge are one claim made twice: a mythic is stronger
-          than a legendary, and the price list says so.
+          the same number. The badge and the edge are one claim made twice: a mythic is stronger than
+          a legendary, and the price list says so.
         </p>
+
         <ul class="ladder">
-          <li><b>1</b> Common</li>
-          <li><b>2</b> Rare</li>
-          <li><b>7</b> Epic</li>
-          <li><b>8</b> Legendary</li>
-          <li><b>4</b> Mythic</li>
-          <li><b>1</b> Secret</li>
+          <li><b>1</b> Common   <span class="bar"><i style="width:12.5%"></i></span></li>
+          <li><b>2</b> Rare     <span class="bar"><i style="width:25%"></i></span></li>
+          <li><b>7</b> Epic     <span class="bar"><i style="width:87.5%"></i></span></li>
+          <li><b>8</b> Legendary<span class="bar"><i style="width:100%"></i></span></li>
+          <li><b>4</b> Mythic   <span class="bar"><i style="width:50%"></i></span></li>
+          <li><b>1</b> Secret   <span class="bar"><i style="width:12.5%"></i></span></li>
         </ul>
       </div>
+
       <figure>
         <div class="phone">
-          <img src="assets/roster.png" width="640" height="1391"
+          <img src="assets/roster.png" width="294" height="640" loading="lazy"
                alt="The roster screen showing The Sentinel, a legendary character, with its tagline and the NEVER SELLS edge.">
         </div>
         <figcaption>The Sentinel · Never sells</figcaption>
       </figure>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="row" id="honest">
-    <div class="label">The deal<span>No interstitials</span></div>
-    <div class="split">
-      <div>
-        <h2>There is not one advert in this game you did not ask for.</h2>
-        <p>
-          The sponsored break was built, measured, and deleted. What is left runs on three rules that
-          do not bend: <strong>every ad pays you something in the game</strong>, you are never asked
-          twice on one screen, and <strong>saying no never costs you anything you have already
-          earned</strong>.
-        </p>
-        <p>
-          Coins come off the road and buy the roster. Gold is capped at fifteen a day however long you
-          play, so the top of the shop is priced in days rather than in grinding. And $3.99 once
-          removes every ad for good — the rewards behind them keep paying, they just stop costing
-          you a video.
-        </p>
+<section class="section" id="deal">
+  <div class="wrap">
+    <div class="head">
+      <div class="chapter" aria-hidden="true">04</div>
+      <div class="head-text">
+        <p class="eyebrow">The deal</p>
+        <h2>Not one advert in this game you did not ask for.</h2>
       </div>
+    </div>
+
+    <div class="split flip">
       <figure>
         <div class="phone">
-          <img src="assets/pit.png" width="640" height="1391"
+          <img src="assets/pit.png" width="294" height="640" loading="lazy"
                alt="The Pit home screen: best run $1.28M, a nine day streak, coins and gold, and the set of three in progress.">
         </div>
         <figcaption>The Pit · Home</figcaption>
       </figure>
-    </div>
-  </section>
 
-  <footer>
+      <div>
+        <p style="margin-top:0">
+          The sponsored break was built, measured, and deleted. What is left runs on three rules that
+          do not bend.
+        </p>
+
+        <ul class="rules">
+          <li><em>01</em><span>Every ad pays you something in the game.</span></li>
+          <li><em>02</em><span>You are never asked twice on one screen.</span></li>
+          <li><em>03</em><span>Saying no never costs you anything you have already earned.</span></li>
+        </ul>
+
+        <p>
+          Coins come off the road and buy the roster. Gold is capped at fifteen a day however long you
+          play, so the top of the shop is priced in days rather than in grinding.
+        </p>
+
+        <div class="price">
+          <b>$3.99</b>
+          <span>Once · removes every ad for good</span>
+        </div>
+        <p class="tight" style="font-size:15px">
+          The rewards behind them keep paying. They just stop costing you a video.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
     <div>Bull Run: Market Runner · iPhone · iOS 17+</div>
     <div class="links">
       <a href="https://github.com/TouchstoneTech/Bullrun">GitHub</a>
       <a href="mailto:peerole.sch@gmail.com">Contact</a>
       <a href="#top">Back to top</a>
     </div>
-  </footer>
+  </div>
+</footer>
 
-</div>
+</body>
+</html>
