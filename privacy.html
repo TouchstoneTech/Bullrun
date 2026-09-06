@@ -263,7 +263,7 @@ footer a:hover { color: var(--green); text-decoration: none; }
 
     <p class="eyebrow">Bull Run: Market Runner</p>
     <h1>Privacy Policy</h1>
-    <p class="eyebrow" style="margin-top:16px">Effective 6 September 2026 · Last updated 6 September 2026 (measurement and Google Signals added)</p>
+    <p class="eyebrow" style="margin-top:16px">Effective 6 September 2026 · Last updated 6 September 2026 (measurement, Google Signals, and the Unity link added)</p>
 
     <div class="card green">
       <h3 style="margin-top:0">The short version</h3>
@@ -325,6 +325,9 @@ footer a:hover { color: var(--green); text-decoration: none; }
     from your IP address, and information about the adverts you were shown.
     Unity's handling of that data is governed by their own policy:
     <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy" rel="noopener">Unity Game Player and App User Privacy Policy</a>.</p>
+    <p>Since 6 September 2026 Unity also receives the game's measurement events.
+    That is described under <a href="#analytics">Measurement</a> below, because it
+    is the same short list of events and not a second collection.</p>
 
     <h2 id="analytics">Measurement</h2>
     <p>The game uses <strong>Google Firebase Analytics</strong> to understand how it is
@@ -379,6 +382,22 @@ footer a:hover { color: var(--green); text-decoration: none; }
     lengths, crashes, your device model and iOS version, and an approximate
     region worked out from your IP address. Your advertising identifier is
     included only if you allowed tracking when iOS asked.</p>
+
+    <h3>The measurement is shared with Unity</h3>
+    <p>Added 6 September 2026. The Google Analytics property above is
+    <strong>linked to Unity</strong>, the company that serves the game's adverts, so
+    the events listed here reach them as well as us. Google exports them to a
+    BigQuery dataset that Unity reads. <strong>Unity pays for that export</strong> — it
+    costs the game nothing, and it costs you nothing.</p>
+    <p>They use it to judge which advert to offer and what it is worth. A player
+    who finishes long runs and takes the rewards is worth more to an advertiser
+    than one who opens the app once, and until now Unity could only guess at that
+    from the adverts themselves.</p>
+    <p><strong>It adds nothing to the list above.</strong> It is the same short set of
+    game events going to a second company rather than a first, and it still
+    carries no identifier we created. Once it is with Unity it is governed by
+    their policy:
+    <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy" rel="noopener">Unity Game Player and App User Privacy Policy</a>.</p>
 
     <h2 id="gamecenter">Game Center</h2>
     <p>Leaderboards and achievements use <strong>Apple's Game Center</strong>, and it is
