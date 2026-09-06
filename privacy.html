@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy · Bull Run: Market Runner</title>
-<meta name="description" content="What Bull Run: Market Runner collects, what it does not, and how to change your mind. No account, no server, no analytics.">
+<meta name="description" content="What Bull Run: Market Runner collects, what it does not, and how to change your mind. No account, no sign-up, and nothing that identifies you.">
 <link rel="icon" href="assets/icon.png">
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="Privacy Policy · Bull Run: Market Runner">
-<meta property="og:description" content="No account, no server, no analytics. What the game collects and how to change your mind.">
+<meta property="og:description" content="No account, no sign-up, nothing that identifies you. What the game collects and how to change your mind.">
 <meta property="og:image" content="assets/icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -263,17 +263,19 @@ footer a:hover { color: var(--green); text-decoration: none; }
 
     <p class="eyebrow">Bull Run: Market Runner</p>
     <h1>Privacy Policy</h1>
-    <p class="eyebrow" style="margin-top:16px">Effective 6 September 2026 · Last updated 6 September 2026</p>
+    <p class="eyebrow" style="margin-top:16px">Effective 6 September 2026 · Last updated 6 September 2026 (measurement added)</p>
 
     <div class="card green">
       <h3 style="margin-top:0">The short version</h3>
-      <p>Bull&nbsp;Run has <strong>no account, no sign-up and no server</strong>. Your
-      coins, your records, your roster and your settings live on your phone and
-      nowhere else. There is no analytics SDK and no crash reporter in the app.</p>
-      <p>The one thing that can leave your device is <strong>your advertising
-      identifier</strong>, and only if you tap <em>Allow</em> when iOS asks — it is used to
-      serve the adverts you choose to watch. Say no and every reward in the game
-      pays exactly the same.</p>
+      <p>Bull&nbsp;Run has <strong>no account and no sign-up</strong>. Your coins,
+      your records, your roster and your settings live on your phone and nowhere
+      else, and we cannot see any of them.</p>
+      <p>Two things do leave your device. <strong>Your advertising
+      identifier</strong>, but only if you tap <em>Allow</em> when iOS asks — it is used to
+      serve the adverts you choose to watch, and saying no changes nothing about
+      what any of them pay. And <strong>anonymous usage measurements</strong>, so we can
+      see how the game is actually played — how long runs last, which rewards
+      people take — without knowing who anyone is.</p>
     </div>
 
     <h2 id="device">What stays on your device</h2>
@@ -287,9 +289,9 @@ footer a:hover { color: var(--green); text-decoration: none; }
       <li>One display preference for the Book's chart, stored in iOS's standard
       app preferences.</li>
     </ul>
-    <p>We cannot see any of it. Deleting the app deletes all of it, and
-    <strong>Settings → Reset progress</strong> inside the game erases it without
-    uninstalling.</p>
+    <p>We cannot see any of it, and none of it is uploaded. Deleting the app
+    deletes all of it, and <strong>Settings → Reset progress</strong> inside the game
+    erases it without uninstalling.</p>
 
     <h2 id="ads">Advertising</h2>
     <p>Bull&nbsp;Run shows <strong>rewarded adverts only</strong> — every advert in the
@@ -320,6 +322,38 @@ footer a:hover { color: var(--green); text-decoration: none; }
     Unity's handling of that data is governed by their own policy:
     <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy" rel="noopener">Unity Game Player and App User Privacy Policy</a>.</p>
 
+    <h2 id="analytics">Measurement</h2>
+    <p>The game uses <strong>Google Firebase Analytics</strong> to understand how it is
+    played. This is the one thing on this page that changed on 6 September 2026;
+    before that date the app measured nothing at all.</p>
+
+    <h3>What we send, and why</h3>
+    <p>A short, fixed list of events, and every one of them is about the game
+    rather than about you:</p>
+    <ul>
+      <li><strong>Runs finished</strong> — which mode, how many seconds it lasted, roughly
+      how far you got, and what it paid.</li>
+      <li><strong>Rewards offered and taken</strong> — which of the game's optional advert
+      rewards get shown, and which get used.</li>
+      <li><strong>Sets closed</strong> and <strong>characters bought</strong>.</li>
+    </ul>
+    <p>We do this because the game's economy — what a run pays, what the roster
+    costs — has always been tuned against a <em>simulation</em> of how people play. This
+    is how we find out what really happens, so the prices and rewards can be set
+    against reality instead of a guess.</p>
+
+    <h3>What is not in it</h3>
+    <p><strong>Nothing that identifies you.</strong> We never set a user id, never attach a
+    name, an account or a device identifier of our own to any of it, and there is
+    nothing in what we send that could be traced back to one person. We cannot
+    look up "your" data, because there is no <em>you</em> in it to look up.</p>
+    <p>Google also collects some information automatically once the library is
+    switched on, and it is only fair to say so: app opens, session lengths,
+    crashes, your device model and iOS version, and an approximate region worked
+    out from your IP address. Your advertising identifier is included only if you
+    allowed tracking. Google's handling of that is governed by their own policy,
+    linked at the foot of this page.</p>
+
     <h2 id="gamecenter">Game Center</h2>
     <p>Leaderboards and achievements use <strong>Apple's Game Center</strong>, and it is
     entirely optional — declining costs you nothing but the online boards. If you
@@ -349,8 +383,11 @@ footer a:hover { color: var(--green); text-decoration: none; }
     <ul>
       <li>Your name, email address, phone number or any account credential.</li>
       <li>Your contacts, photos, camera, microphone, calendar or health data.</li>
-      <li>Precise location. The app never requests location permission.</li>
-      <li>Any behavioural analytics, session recording or crash telemetry.</li>
+      <li>Precise location. The app never requests location permission — the
+      approximate region above is worked out from your IP address by Google and
+      is never read by the game.</li>
+      <li>Session recordings, screen recordings, or anything you type.</li>
+      <li>Any measurement tied to your identity — see <a href="#analytics">Measurement</a>.</li>
     </ul>
 
     <h2 id="summary">Data collection, in a table</h2>
@@ -367,6 +404,18 @@ footer a:hover { color: var(--green); text-decoration: none; }
             <td>Third-party advertising</td>
             <td>Yes</td>
             <td>Yes, only with your permission</td>
+          </tr>
+          <tr>
+            <td>Product interaction</td>
+            <td>Analytics — how the game is played</td>
+            <td>No</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Approximate region</td>
+            <td>Analytics — derived by Google from your IP</td>
+            <td>No</td>
+            <td>No</td>
           </tr>
           <tr>
             <td>Everything else</td>
@@ -394,13 +443,15 @@ footer a:hover { color: var(--green); text-decoration: none; }
       <li><strong>Erase everything</strong> — delete the app. Nothing survives on our side,
       because nothing was ever there.</li>
     </ul>
-    <p>Because the game holds no personal data on any server, there is no account
-    for us to export or delete on request. Requests about data held by Unity or
+    <p>Because nothing we measure is tied to your identity, there is no account
+    for us to export or delete on request — and no way for us to find your data
+    even if you asked. Requests about data held by Unity or
     Apple should go to them under the policies linked on this page.</p>
 
     <h2 id="third">Third parties</h2>
     <ul>
       <li><a href="https://unity.com/legal/game-player-and-app-user-privacy-policy" rel="noopener">Unity Technologies — advertising</a></li>
+      <li><a href="https://policies.google.com/privacy" rel="noopener">Google — Firebase Analytics</a></li>
       <li><a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple — App Store, Game Center and SKAdNetwork</a></li>
     </ul>
 
