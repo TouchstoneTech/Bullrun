@@ -6,6 +6,7 @@ in `assets/`.
 
 ```
 index.html      the whole page
+privacy.html    the privacy policy — the URL App Store Connect points at
 assets/
   icon.png      the app icon, 512px
   run.png       a WALL run in progress

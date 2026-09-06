@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy · Bull Run: Market Runner</title>
+<meta name="description" content="What Bull Run: Market Runner collects, what it does not, and how to change your mind. No account, no server, no analytics.">
+<link rel="icon" href="assets/icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Privacy Policy · Bull Run: Market Runner">
+<meta property="og:description" content="No account, no server, no analytics. What the game collects and how to change your mind.">
+<meta property="og:image" content="assets/icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+
+<style>
+/* ==================================================================
+   Bull Run — privacy policy.
+
+   Self-contained by design. index.html carries its whole stylesheet
+   inline and there is no shared CSS file to import, so the tokens
+   below are a copy of that page's `:root` rather than a link to it.
+   ⚠️ If the landing page's palette moves, this block moves with it.
+   ================================================================== */
+
+:root {
+  --ink:       #07080A;
+  --ink-2:     #0B0E12;
+  --ink-3:     #10141A;
+  --line:      #191E26;
+  --line-2:    #29323E;
+
+  --green:     #2BE68C;
+  --green-lbl: #28C077;
+  --green-ink: #04140C;
+  --gold:      #E8A33C;
+
+  --text:      #F0F3F6;
+  --mute:      #8A939F;
+  --faint:     #79838F;
+
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --maxw: 760px;
+  --pad: 24px;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--green);
+  color: var(--green-ink);
+  padding: 12px 18px;
+  font-weight: 800;
+  z-index: 100;
+}
+.skip:focus { left: 0; }
+
+/* --- masthead ------------------------------------------------------ */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(7, 8, 10, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.masthead .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  height: 66px;
+  max-width: 1200px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  color: var(--text);
+  flex: none;
+}
+.brand b { font-size: 17px; font-weight: 900; letter-spacing: -0.01em; }
+.masthead nav a {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--mute);
+  text-decoration: none;
+}
+.masthead nav a:hover { color: var(--green); }
+
+/* --- type ---------------------------------------------------------- */
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+  margin: 14px 0 0;
+}
+
+h2 {
+  font-size: clamp(21px, 2.4vw, 26px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 52px 0 0;
+  scroll-margin-top: 86px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 26px 0 0;
+}
+
+p { margin: 14px 0 0; color: var(--mute); }
+strong { color: var(--text); font-weight: 700; }
+
+a { color: var(--green-lbl); text-decoration: none; }
+a:hover { color: var(--green); text-decoration: underline; }
+
+ul { margin: 14px 0 0; padding-left: 20px; color: var(--mute); }
+li { margin: 8px 0 0; }
+li::marker { color: var(--line-2); }
+
+main { padding: 54px 0 20px; }
+
+/* --- the summary panel --------------------------------------------- */
+
+.card {
+  margin-top: 34px;
+  padding: 22px 24px 26px;
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.card.green { border-color: rgba(43, 230, 140, 0.28); }
+.card p:first-of-type { margin-top: 12px; }
+.card ul { margin-top: 12px; }
+
+/* --- the table ------------------------------------------------------ */
+
+.tablewrap { margin-top: 18px; overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  min-width: 520px;
+}
+th, td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  color: var(--mute);
+}
+th {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  border-bottom-color: var(--line-2);
+  white-space: nowrap;
+}
+td:first-child { color: var(--text); font-weight: 600; }
+
+/* --- footer --------------------------------------------------------- */
+
+footer {
+  margin-top: 64px;
+  border-top: 1px solid var(--line);
+  padding: 34px 0 60px;
+}
+footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--faint);
+  max-width: 1200px;
+}
+footer .links { display: flex; gap: 24px; flex-wrap: wrap; }
+footer a { color: var(--mute); }
+footer a:hover { color: var(--green); text-decoration: none; }
+
+@media (max-width: 620px) {
+  .masthead nav { display: none; }
+  body { font-size: 16px; }
+}
+</style>
+</head>
+<body id="top">
+
+<a class="skip" href="#policy">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="./">
+      <img src="assets/icon.png" width="30" height="30" alt="">
+      <b>Bull&nbsp;Run</b>
+    </a>
+    <nav aria-label="Sections">
+      <a href="./">Back to the game</a>
+    </nav>
+  </div>
+</header>
+
+<main id="policy">
+  <div class="wrap">
+
+    <p class="eyebrow">Bull Run: Market Runner</p>
+    <h1>Privacy Policy</h1>
+    <p class="eyebrow" style="margin-top:16px">Effective 6 September 2026 · Last updated 6 September 2026</p>
+
+    <div class="card green">
+      <h3 style="margin-top:0">The short version</h3>
+      <p>Bull&nbsp;Run has <strong>no account, no sign-up and no server</strong>. Your
+      coins, your records, your roster and your settings live on your phone and
+      nowhere else. There is no analytics SDK and no crash reporter in the app.</p>
+      <p>The one thing that can leave your device is <strong>your advertising
+      identifier</strong>, and only if you tap <em>Allow</em> when iOS asks — it is used to
+      serve the adverts you choose to watch. Say no and every reward in the game
+      pays exactly the same.</p>
+    </div>
+
+    <h2 id="device">What stays on your device</h2>
+    <p>Everything the game knows about you is written to your own phone's app
+    storage and is never uploaded to us:</p>
+    <ul>
+      <li>Your portfolio records, best runs, sets, and per-mode high scores.</li>
+      <li>Coins, gold, the characters and trails you own, and which are equipped.</li>
+      <li>Daily challenges, streaks, medals, and your last twenty runs' earnings.</li>
+      <li>Your settings — sound, music, haptics, reduce motion, and the 9pm reminder.</li>
+      <li>One display preference for the Book's chart, stored in iOS's standard
+      app preferences.</li>
+    </ul>
+    <p>We cannot see any of it. Deleting the app deletes all of it, and
+    <strong>Settings → Reset progress</strong> inside the game erases it without
+    uninstalling.</p>
+
+    <h2 id="ads">Advertising</h2>
+    <p>Bull&nbsp;Run shows <strong>rewarded adverts only</strong> — every advert in the
+    game is one you chose to watch in exchange for something, and there is no
+    interstitial anywhere in the app. Adverts are served by
+    <strong>Unity&nbsp;Ads</strong>, a service of Unity Technologies.</p>
+
+    <h3>Tracking, and your answer to it</h3>
+    <p>After your first run the game asks, through Apple's own prompt, whether it
+    may track you across other companies' apps and websites. If you allow it,
+    your device's <strong>advertising identifier (IDFA)</strong> is shared with Unity so
+    the adverts you see can be personalised, which is worth more to the game.</p>
+    <p><strong>Saying no changes nothing about what you are paid.</strong> Every door in the
+    game — the double, the bell, the mint, the vault draw — pays the same amount
+    either way. You can change your answer at any time in
+    <strong>iOS Settings → Privacy &amp; Security → Tracking</strong>.</p>
+
+    <h3>Install measurement</h3>
+    <p>The app supports <strong>SKAdNetwork</strong>, Apple's privacy-preserving
+    attribution system, which tells an advertiser that an install happened
+    without identifying you. It works whether or not you allow tracking and is
+    handled entirely by iOS.</p>
+
+    <h3>What Unity receives</h3>
+    <p>To serve an advert, Unity may receive your advertising identifier (only
+    with your permission), device and OS information, coarse location inferred
+    from your IP address, and information about the adverts you were shown.
+    Unity's handling of that data is governed by their own policy:
+    <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy" rel="noopener">Unity Game Player and App User Privacy Policy</a>.</p>
+
+    <h2 id="gamecenter">Game Center</h2>
+    <p>Leaderboards and achievements use <strong>Apple's Game Center</strong>, and it is
+    entirely optional — declining costs you nothing but the online boards. If you
+    are signed in, your best scores and earned achievements are sent to Apple
+    under your own Game Center account, and other players may see your Game
+    Center nickname next to your rank.</p>
+    <p>The game never sees your Apple ID or your email address. You can sign out
+    in <strong>iOS Settings → Game Center</strong>. If you never sign in, the boards in
+    the game show generated stand-in names instead, and the app says so on the
+    screen.</p>
+
+    <h2 id="notifications">Notifications</h2>
+    <p>If you allow it, the game schedules <strong>one local reminder a day at 9pm</strong>
+    in your own time zone. It is created and delivered entirely by your phone —
+    there is no push server, we send nothing, and we are not told whether you
+    opened it. Turn it off with <strong>The bell</strong> in the game's settings, or in
+    iOS Settings.</p>
+
+    <h2 id="purchases">Purchases</h2>
+    <p>Any in-app purchase is handled by <strong>Apple</strong> through the App Store. We
+    never see or receive your payment details — the app is told only whether a
+    purchase exists, so it can unlock what you paid for.</p>
+
+    <h2 id="never">What we never collect</h2>
+    <p>To be specific rather than reassuring, Bull&nbsp;Run does not collect, ask
+    for, or transmit any of the following:</p>
+    <ul>
+      <li>Your name, email address, phone number or any account credential.</li>
+      <li>Your contacts, photos, camera, microphone, calendar or health data.</li>
+      <li>Precise location. The app never requests location permission.</li>
+      <li>Any behavioural analytics, session recording or crash telemetry.</li>
+    </ul>
+
+    <h2 id="summary">Data collection, in a table</h2>
+    <p>This is the same disclosure that appears on the App Store listing and in
+    the app's privacy manifest.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Data</th><th>Why</th><th>Linked to you</th><th>Used for tracking</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Advertising identifier</td>
+            <td>Third-party advertising</td>
+            <td>Yes</td>
+            <td>Yes, only with your permission</td>
+          </tr>
+          <tr>
+            <td>Everything else</td>
+            <td>Not collected — stays on your device</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="children">Children</h2>
+    <p>Bull&nbsp;Run is not directed at children under 13, and the app is not
+    configured as a child-directed service with its advertising provider. We do
+    not knowingly collect data from children. If you believe a child has provided
+    information through the app, contact us and we will act on it — though in
+    practice there is nothing held on our side to remove.</p>
+
+    <h2 id="rights">Your choices</h2>
+    <ul>
+      <li><strong>Stop tracking</strong> — iOS Settings → Privacy &amp; Security → Tracking.</li>
+      <li><strong>Stop the reminder</strong> — the game's Settings, or iOS Settings → Notifications.</li>
+      <li><strong>Leave the boards</strong> — sign out in iOS Settings → Game Center.</li>
+      <li><strong>Erase your progress</strong> — Settings → Reset progress in the game.</li>
+      <li><strong>Erase everything</strong> — delete the app. Nothing survives on our side,
+      because nothing was ever there.</li>
+    </ul>
+    <p>Because the game holds no personal data on any server, there is no account
+    for us to export or delete on request. Requests about data held by Unity or
+    Apple should go to them under the policies linked on this page.</p>
+
+    <h2 id="third">Third parties</h2>
+    <ul>
+      <li><a href="https://unity.com/legal/game-player-and-app-user-privacy-policy" rel="noopener">Unity Technologies — advertising</a></li>
+      <li><a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple — App Store, Game Center and SKAdNetwork</a></li>
+    </ul>
+
+    <h2 id="changes">Changes to this policy</h2>
+    <p>If this policy changes, the date at the top of the page changes with it,
+    and the previous versions stay readable in the
+    <a href="https://github.com/TouchstoneTech/Bullrun/commits/main/privacy.html" rel="noopener">page's own revision history</a>
+    on GitHub.</p>
+
+    <h2 id="contact">Contact</h2>
+    <p>Questions about this policy, or about anything the game does with your
+    data: <a href="mailto:contacttouchstonetech@gmail.com">contacttouchstonetech@gmail.com</a>.</p>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Bull Run: Market Runner · iPhone · iOS 17+</div>
+    <div class="links">
+      <a href="./">Home</a>
+      <a href="https://github.com/TouchstoneTech/Bullrun">GitHub</a>
+      <a href="mailto:contacttouchstonetech@gmail.com">Contact</a>
+      <a href="#top">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
