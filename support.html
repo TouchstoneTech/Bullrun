@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support · Bull Run: Stock Market Runner</title>
+<meta name="description" content="Help with Bull Run: Stock Market Runner — lost progress, adverts, Game Center, reminders, deleting your data, and how to reach a human.">
+<link rel="icon" href="assets/icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Support · Bull Run: Stock Market Runner">
+<meta property="og:description" content="Answers to the things that actually go wrong, and one address that reaches a person.">
+<meta property="og:image" content="assets/icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+
+<style>
+/* ==================================================================
+   Bull Run — privacy policy.
+
+   Self-contained by design. index.html carries its whole stylesheet
+   inline and there is no shared CSS file to import, so the tokens
+   below are a copy of that page's `:root` rather than a link to it.
+   ⚠️ If the landing page's palette moves, this block moves with it.
+   ================================================================== */
+
+:root {
+  --ink:       #07080A;
+  --ink-2:     #0B0E12;
+  --ink-3:     #10141A;
+  --line:      #191E26;
+  --line-2:    #29323E;
+
+  --green:     #2BE68C;
+  --green-lbl: #28C077;
+  --green-ink: #04140C;
+  --gold:      #E8A33C;
+
+  --text:      #F0F3F6;
+  --mute:      #8A939F;
+  --faint:     #79838F;
+
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --maxw: 760px;
+  --pad: 24px;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--green);
+  color: var(--green-ink);
+  padding: 12px 18px;
+  font-weight: 800;
+  z-index: 100;
+}
+.skip:focus { left: 0; }
+
+/* --- masthead ------------------------------------------------------ */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(7, 8, 10, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.masthead .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  height: 66px;
+  max-width: 1200px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  color: var(--text);
+  flex: none;
+}
+.brand b { font-size: 17px; font-weight: 900; letter-spacing: -0.01em; }
+.masthead nav a {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--mute);
+  text-decoration: none;
+}
+.masthead nav a:hover { color: var(--green); }
+
+/* --- type ---------------------------------------------------------- */
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+  margin: 14px 0 0;
+}
+
+h2 {
+  font-size: clamp(21px, 2.4vw, 26px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 52px 0 0;
+  scroll-margin-top: 86px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 26px 0 0;
+}
+
+p { margin: 14px 0 0; color: var(--mute); }
+strong { color: var(--text); font-weight: 700; }
+
+a { color: var(--green-lbl); text-decoration: none; }
+a:hover { color: var(--green); text-decoration: underline; }
+
+ul { margin: 14px 0 0; padding-left: 20px; color: var(--mute); }
+li { margin: 8px 0 0; }
+li::marker { color: var(--line-2); }
+
+main { padding: 54px 0 20px; }
+
+/* --- the summary panel --------------------------------------------- */
+
+.card {
+  margin-top: 34px;
+  padding: 22px 24px 26px;
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.card.green { border-color: rgba(43, 230, 140, 0.28); }
+.card p:first-of-type { margin-top: 12px; }
+.card ul { margin-top: 12px; }
+
+/* --- the table ------------------------------------------------------ */
+
+.tablewrap { margin-top: 18px; overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  min-width: 520px;
+}
+th, td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  color: var(--mute);
+}
+th {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  border-bottom-color: var(--line-2);
+  white-space: nowrap;
+}
+td:first-child { color: var(--text); font-weight: 600; }
+
+/* --- footer --------------------------------------------------------- */
+
+footer {
+  margin-top: 64px;
+  border-top: 1px solid var(--line);
+  padding: 34px 0 60px;
+}
+footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--faint);
+  max-width: 1200px;
+}
+footer .links { display: flex; gap: 24px; flex-wrap: wrap; }
+footer a { color: var(--mute); }
+footer a:hover { color: var(--green); text-decoration: none; }
+
+@media (max-width: 620px) {
+  .masthead nav { display: none; }
+  body { font-size: 16px; }
+}
+</style>
+</head>
+<body id="top">
+
+<a class="skip" href="#support">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="./">
+      <img src="assets/icon.png" width="30" height="30" alt="">
+      <b>Bull&nbsp;Run</b>
+    </a>
+    <nav aria-label="Sections">
+      <a href="./">Back to the game</a>
+    </nav>
+  </div>
+</header>
+
+<main id="support">
+  <div class="wrap">
+
+    <p class="eyebrow">Bull Run: Stock Market Runner</p>
+    <h1>Support</h1>
+    <p class="eyebrow" style="margin-top:16px">Last updated 7 September 2026</p>
+
+    <div class="card green">
+      <h3 style="margin-top:0">Reaching a person</h3>
+      <p>Email <a href="mailto:contacttouchstonetech@gmail.com">contacttouchstonetech@gmail.com</a>
+      and a human reads it. There is no ticket system and no bot.</p>
+      <p>It helps enormously if you say <strong>which iPhone and which iOS version</strong>
+      you are on, and what you were doing when it went wrong. If something looks
+      wrong on screen, a screenshot is worth several paragraphs.</p>
+    </div>
+
+    <h2 id="progress">I lost my progress</h2>
+    <p>Bull&nbsp;Run has <strong>no account and no server</strong>. Everything the game
+    knows about you — your coins, your gold, your records, your roster, your
+    streak — is a single file on your phone. That is deliberate, and it has one
+    consequence worth being straight about: <strong>deleting the app deletes your
+    progress, and nothing can bring it back.</strong> Neither can we, because we never
+    had a copy.</p>
+    <p>Your <strong>Game Center</strong> scores are the exception. Those belong to your
+    Apple Account rather than to this app, so they survive a reinstall and follow
+    you to a new phone.</p>
+
+    <h2 id="restore">Restore purchases does nothing</h2>
+    <p>That is expected. <strong>Bull&nbsp;Run currently sells nothing</strong> — there are
+    no in-app purchases. The <em>Restore purchases</em> row stays in Settings for
+    anyone who bought the ad-free unlock while it was on sale on an earlier
+    build; tapping it re-checks with Apple and restores that entitlement if you
+    hold it. If you have never bought anything, it will correctly find nothing.</p>
+
+    <h2 id="ads">The adverts</h2>
+    <p>Every advert in this game is one you chose to watch, and <strong>saying no never
+    costs you anything you have already earned</strong>. There are no interstitials —
+    nothing plays between runs uninvited.</p>
+    <p>If an advert hangs on a black screen, close it and the run pays out as
+    normal. If you are served an advert that is inappropriate or does not suit
+    the game's 4+ rating, please send us a screenshot with the time and we will
+    report it to the ad network.</p>
+
+    <h2 id="reminders">Turning the daily reminder off</h2>
+    <p>One notification, at 9pm your local time. <strong>Settings → THE BELL</strong> inside
+    the game turns it off. If you refused the notification permission when iOS
+    asked, the game cannot ask again — that switch lives in
+    <strong>iOS Settings → Notifications → Bull Run</strong>.</p>
+
+    <h2 id="gamecenter">Game Center and leaderboards</h2>
+    <p>If the boards show grey rivals rather than real players, you are not
+    signed in to Game Center. The screen says which of the two you are looking
+    at. Sign in from <strong>iOS Settings → Game Center</strong>; the game will pick it up
+    the next time you open the Ranks screen.</p>
+
+    <h2 id="delete">Deleting your data</h2>
+    <p><strong>Settings → Delete all data</strong> removes the save file, its backup and the
+    analytics identifier from your phone, and cancels the daily reminder. It is
+    immediate and it cannot be undone.</p>
+    <p>Two things it cannot reach, and the panel in the app says so too. Your
+    <strong>Game Center</strong> scores belong to Apple, under your own Apple Account —
+    remove them from <em>iOS Settings → Game Center</em>. And measurements already
+    sent carry no identifier of ours, so they cannot be looked up per person even
+    by us. The full picture is in the <a href="privacy.html">privacy policy</a>.</p>
+
+    <h2 id="offline">Playing offline</h2>
+    <p>The whole game works with no connection. Only the adverts and the Game
+    Center boards need one, and both fail quietly — a run plays exactly the same
+    on a plane.</p>
+
+    <h2 id="requirements">Requirements</h2>
+    <p>iPhone, <strong>iOS 17 or later</strong>. It is not built for iPad or Mac.</p>
+
+    <h2 id="bugs">Reporting a bug</h2>
+    <p>Please do — the game is small enough that reports get read and acted on.
+    <a href="mailto:contacttouchstonetech@gmail.com?subject=Bull%20Run%20bug%20report">Email a bug report</a>,
+    and if you can say <em>which map</em>, <em>which character</em> and roughly how far
+    into the run it happened, that is usually enough to find it.</p>
+
+    <h2 id="privacy">Privacy</h2>
+    <p>What leaves your phone, what does not, and how to change your mind:
+    <a href="privacy.html">the privacy policy</a>.</p>
+
+    <h2 id="contact">Contact</h2>
+    <p><a href="mailto:contacttouchstonetech@gmail.com">contacttouchstonetech@gmail.com</a>.
+    One person, so give it a day or two.</p>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Bull Run: Stock Market Runner · iPhone · iOS 17+</div>
+    <div class="links">
+      <a href="./">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="https://github.com/TouchstoneTech/Bullrun">GitHub</a>
+      <a href="mailto:contacttouchstonetech@gmail.com">Contact</a>
+      <a href="#top">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
